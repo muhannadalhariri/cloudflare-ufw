@@ -1,6 +1,7 @@
 #!/bin/sh
 
 curl -s https://www.cloudflare.com/ips-v4 -o /tmp/cf_ips
+echo "\n">>/tmp/cf_ips
 curl -s https://www.cloudflare.com/ips-v6 >> /tmp/cf_ips
 
 # Allow all traffic from Cloudflare IPs (no ports restriction)
@@ -16,4 +17,4 @@ ufw reload > /dev/null
 #for cfip in `cat /tmp/cf_ips`; do ufw allow proto tcp from $cfip to any port 443 comment 'Cloudflare IP'; done
 
 # Restrict to ports 80 & 443
-#for cfip in `cat /tmp/cf_ips`; do ufw allow proto tcp from $cfip to any port 80,443 comment 'Cloudflare IP'; done
+#for cfip in `cat /tmp/cf_ips`; do ufw allow proto tcp from $cfip to any port 80,443 comment 'Cloudflare IP'; done                                                                                                                                                                                                                                                                                        
